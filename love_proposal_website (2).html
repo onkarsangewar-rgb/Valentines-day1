@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Legendary Love Story ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+      overflow: hidden;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .stars::before {
+      content: "";
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      animation: moveStars 120s linear infinite;
+      opacity: 0.4;
+      top: -50%;
+      left: -50%;
+      z-index: 0;
+    }
+
+    @keyframes moveStars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-1000px); }
+    }
+
+    .screen {
+      position: relative;
+      z-index: 1;
+      display: none;
+      max-width: 950px;
+      padding: 60px;
+      background: rgba(0,0,0,0.45);
+      border-radius: 32px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+      animation: fadeIn 1.6s ease;
+    }
+
+    .active { display: block; }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    p { font-size: 1.3rem; line-height: 1.9; margin-bottom: 28px; }
+
+    .gallery { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+    img.memory {
+      width: 260px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    img.memory:hover {
+      transform: scale(1.12) rotate(-1deg);
+      box-shadow: 0 25px 60px rgba(255,105,180,0.4);
+    }
+
+    button {
+      border: none;
+      padding: 16px 36px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 14px;
+      transition: 0.4s ease;
+    }
+
+    .next { background: white; color: #ff4d6d; }
+
+    .yes {
+      background: linear-gradient(45deg, #ff4d6d, #ff9a9e);
+      color: white;
+      font-size: 1.25rem;
+      box-shadow: 0 10px 30px rgba(255,77,109,0.5);
+    }
+
+    .no { background: white; color: #ff4d6d; position: relative; }
+
+    button:hover { transform: scale(1.12); }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 4s linear infinite;
+      opacity: 0.85;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0.9; }
+      100% { transform: translateY(-1100px) scale(2); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="stars">
+
+  <audio id="bgMusic" loop>
+    <source src="until_i_found_you" type="audio/mpeg">
+  </audio>
+
+  <!-- Screen 1 -->
+  <div class="screen active" id="s1">
+    <h1>Khushi… My Destiny ❤️</h1>
+    <p>
+      If someone asked me where magic exists…
+      I would simply point to the moment I met you.
+      <br><br>
+      Because since then… life stopped being ordinary
+      and started feeling like a beautiful movie.
+    </p>
+    <button class="next" onclick="next(2)">Begin Our Story ✨</button>
+  </div>
+
+  <!-- Screen 2 -->
+  <div class="screen" id="s2">
+    <h1>Memories Written In Time 📸</h1>
+
+    <div class="gallery">
+      <img src="IMG20241208132145.jpg" class="memory" />
+      <img src="IMG20250830201543.jpg" class="memory" />
+      <img src="WhatsApp Image 2026-02-04 at 18.48.49 (2).jpeg" class="memory" />
+    </div>
+
+    <p>
+      These moments are not pictures…
+      they are proof that destiny knew what it was doing
+      when it brought you into my life.
+    </p>
+
+    <button class="next" onclick="next(3)">Feel My Heart ➜</button>
+  </div>
+
+  <!-- Screen 3 -->
+  <div class="screen" id="s3">
+    <h1>You Became My Home 🌙</h1>
+    <p>
+      Khushi…
+      in your laughter I found peace,
+      in your silence I found comfort,
+      and in your presence… I found a forever I never knew I needed.
+    </p>
+    <button class="next" onclick="next(4)">One Final Question 💍</button>
+  </div>
+
+  <!-- Proposal -->
+  <div class="screen" id="s4">
+    <h1>The Moment That Matters Most 💫</h1>
+    <p>
+      So today… with every heartbeat telling me your name…
+      I want to ask you something simple yet eternal.
+      <br><br>
+      Khushi… will you be mine in this life,
+      and in every lifetime after this? ❤️
+    </p>
+
+    <button class="yes" onclick="sayYes()">Yes… Forever ❤️</button>
+    <button class="no" onmouseover="moveNo()">No 🙈</button>
+  </div>
+
+  <!-- Final Message -->
+  <div class="screen" id="s5">
+    <h1>Our Forever Begins Now ✨</h1>
+    <p>
+      Khushi,
+      <br><br>
+      Meeting you was luck…
+      knowing you was magic…
+      but loving you is the most beautiful truth of my existence.
+      <br><br>
+      I don’t know what the future holds,
+      but I know one thing with absolute certainty—
+      **every version of my future has you in it.**
+      <br><br>
+      So here I am…
+      not just giving you my heart,
+      but giving you my every tomorrow,
+      every dream,
+      every sunrise I will ever see.
+      <br><br>
+      I love you beyond words, beyond time, beyond this lifetime.
+      <br><br>
+      **I love you, Khushi. Forever and always. ❤️**
+    </p>
+  </div>
+
+  <script>
+    const music = document.getElementById('bgMusic');
+
+    function next(num) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById('s' + num).classList.add('active');
+      music.play().catch(() => {});
+    }
+
+    function sayYes() {
+      next(5);
+      startHearts();
+    }
+
+    function moveNo() {
+      const btn = document.querySelector('.no');
+      const x = Math.random() * (window.innerWidth - 120);
+      const y = Math.random() * (window.innerHeight - 80);
+      btn.style.position = 'absolute';
+      btn.style.left = x + 'px';
+      btn.style.top = y + 'px';
+    }
+
+    function startHearts() {
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.bottom = '-20px';
+        heart.style.fontSize = Math.random() * 26 + 18 + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }, 200);
+    }
+  </script>
+
+  <!-- Secret QR Modal -->
+  <div id="qrModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;z-index:10;flex-direction:column;">
+    <h1 style="margin-bottom:20px;">Scan My Heart ❤️</h1>
+    <div id="qrcode"></div>
+    <p style="margin-top:20px;font-size:1rem;opacity:0.8;">A secret made only for you, Khushi.</p>
+  </div>
+
+  <!-- QRCode Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+    const liveURL = window.location.href;
+
+    function showQR() {
+      document.getElementById('qrModal').style.display = 'flex';
+      if (!document.getElementById('qrcode').hasChildNodes()) {
+        new QRCode(document.getElementById('qrcode'), {
+          text: liveURL,
+          width: 220,
+          height: 220
+        });
+      }
+    }
+
+    // Long press anywhere to reveal secret QR
+    let pressTimer;
+    document.body.addEventListener('mousedown', () => {
+      pressTimer = setTimeout(showQR, 1200);
+    });
+
+    document.body.addEventListener('mouseup', () => clearTimeout(pressTimer));
+  </script>
+
+</body>
+</html>
